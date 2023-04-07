@@ -12,29 +12,36 @@ struct BookPreview: View {
     var book: Book
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text(book.title ?? "")
-                    .bold()
-                    .font(.title)
+        ZStack {
+            Rectangle()
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                .shadow(color: .gray, radius: 10, x: -5, y: 5)
+            
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(book.title ?? "")
+                        .bold()
+                        .font(.title)
+                    
+                    Spacer()
+                    
+                    Image(systemName: book.getImageName())
+                        .renderingMode(.template)
+                        .resizable()
+                        .foregroundColor(.yellow)
+                        .frame(width: 30, height: 30)
+                        .scaledToFit()
+                }
                 
-                Spacer()
+                Text(book.author ?? "")
                 
-                Image(systemName: book.getImageName())
-                    .renderingMode(.template)
+                Image("cover" + String(book.id ?? 0))
                     .resizable()
-                    .foregroundColor(.yellow)
-                    .frame(width: 30, height: 30)
                     .scaledToFit()
             }
-            
-            Text(book.author ?? "")
-            
-            Image("cover" + String(book.id ?? 0))
-                .resizable()
-                .scaledToFit()
+            .padding(25)
         }
-        .padding([.leading, .trailing], 20)
     }
 }
 

@@ -8,19 +8,35 @@
 import SwiftUI
 
 struct BookListView: View {
+    
+    @EnvironmentObject var model: BookModel
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        
+        NavigationView {
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 50) {
+                    ForEach(model.books) { book in
+                        
+                        NavigationLink {
+                            BookDetailView(book: book)
+                        } label: {
+                            BookPreview(book: book)
+                                .foregroundColor(.black)
+                                .padding([.leading, .trailing], 20)
+                        }
+                    }
+                }
+                .padding(.top)
+            }
+            .navigationTitle("My Library")
         }
-        .padding()
     }
 }
 
 struct BookListView_Previews: PreviewProvider {
     static var previews: some View {
         BookListView()
+            .environmentObject(BookModel())
     }
 }

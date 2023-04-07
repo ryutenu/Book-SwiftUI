@@ -17,6 +17,6 @@ struct Book: Identifiable, Decodable {
     var content: [String]?
     
     func getImageName() -> String {
-        return (isFavourite == true) ? "star.fill" : ""
+        return (isFavourite == true) ? "star.fill" : "star"
     }
 }

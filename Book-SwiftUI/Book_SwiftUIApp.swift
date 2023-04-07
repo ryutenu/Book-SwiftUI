@@ -12,6 +12,7 @@ struct Book_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
             BookListView()
+                .environmentObject(BookModel())
         }
     }
 }
