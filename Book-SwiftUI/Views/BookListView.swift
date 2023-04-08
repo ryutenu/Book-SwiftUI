@@ -13,7 +13,7 @@ struct BookListView: View {
     
     var body: some View {
         
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 50) {
                     ForEach(model.books) { book in

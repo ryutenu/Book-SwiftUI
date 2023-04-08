@@ -46,4 +46,10 @@ class BookModel: ObservableObject {
             books[index].rating = rating
         }
     }
+    
+    func recordCurrentPage(forId id: Int?, currentPage: Int) {
+        if let index = books.firstIndex(where: { $0.id == id }) {
+            books[index].currentPage = currentPage
+        }
+    }
 }

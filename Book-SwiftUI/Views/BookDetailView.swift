@@ -10,19 +10,22 @@ import SwiftUI
 struct BookDetailView: View {
     
     @EnvironmentObject var model: BookModel
+    @State private var rating = 3
     
     var book: Book
-    
-    @State private var rating = 3
     
     var body: some View {
         VStack(spacing: 20) {
             Text("Read Now!")
                 .font(.title)
             
-            Image("cover" + String(book.id ?? 0))
-                .resizable()
-                .scaledToFit()
+            NavigationLink {
+                BookContentView(book: book)
+            } label: {
+                Image("cover" + String(book.id ?? 0))
+                    .resizable()
+                    .scaledToFit()
+            }
             
             Text("Mark for later!")
                 .font(.headline)
